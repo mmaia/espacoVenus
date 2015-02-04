@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:shiro="http://shiro.apache.org/tags"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/twoColumns.xhtml">
+
+	<ui:param name="pageTitle" value="Grupo Alimentar -  Espaço Vênus" />
+
+	<ui:define name="header">
+		<style type="text/css">
+.alignTop td {
+	vertical-align: top;
+}
+</style>
+	</ui:define>
+	<ui:define name="left">
+
+		<img src="/espacoVenus/img/imgGruposAlimentares.png" width="95%"
+			alt="Foto!" border="0" />
+
+		<ul class="nav nav-sidebar">
+			<li><a href="/espacoVenus/web/alimentos/homeAlimentos.xhtml">Home</a></li>
+			<li class="active"><a href="/espacoVenus/web/alimentos/grupoAlimentar.xhtml">Grupo
+					Alimentar</a></li>
+			<li><a href="/espacoVenus/web/alimentos/alimento.xhtml">Alimentos</a></li>
+			<li><a href="#">Informações Nutricionais</a></li>
+		</ul>
+	</ui:define>
+
+
+
+	<ui:define name="main">
+
+		<h:form>
+
+			<h1 class="page-header">Grupo Alimentar</h1>
+
+			<p:fieldset legend="Cadastrar Grupo Alimentar" toggleable="true"
+				toggleSpeed="500" collapsed="true" id="cadastroGrupoAlimentar">
+
+				<h:panelGrid columns="3" styleClass="alignTop">
+					<h:outputLabel value="Nome Grupo Alimentar: " />
+					<p:inputText id="nomeGrupoAlimentar" required="true" size="30" value = "#{grupoAlimentarView.grupoAlimentar.nomeGrupo}"/>
+					<h:message for="nomeGrupoAlimentar" />
+
+					<p:spacer />
+					<p:spacer />
+					<p:spacer />
+
+					<h:outputLabel value="Descrição:" />
+					<p:inputTextarea id="descricaoGrupoAlimentar" cols="60" value = "#{grupoAlimentarView.grupoAlimentar.descricao}"/>
+					<h:message for="descricaoGrupoAlimentar" />
+
+				</h:panelGrid>
+				<br/>
+				<p:commandButton value="Salvar Grupo" update="panelGrupoAlimentar, cadastroGrupoAlimentar"
+					id="commandSalvarGrupoAjax"
+					actionListener="#{grupoAlimentarView.cadastrarGrupoAlimentar()}" />
+
+
+
+			</p:fieldset>
+			<p:spacer />
+
+			<p:panel id="panelGrupoAlimentar">
+				<p:dataTable value="#{gruposAlimentaresList}" var = "grupoAlimentar">
+					<p:column headerText="Nome Grupo" width="30%">#{grupoAlimentar.nomeGrupo}</p:column>
+					<p:column headerText="Descrição" width="40%">#{grupoAlimentar.descricao}</p:column>
+					<p:column headerText="Operações" width="30%">
+						<p:commandButton value="Excluir" titlle="Excluir Grupo Alimentar"/>
+						<p:spacer width="10px"/>
+						<p:commandButton value="Alimentos" title="Ver alimentos deste grupo"/>
+					</p:column>
+				</p:dataTable>
+				
+			</p:panel>
+
+		</h:form>
+
+
+
+	</ui:define>
+
+</ui:composition>

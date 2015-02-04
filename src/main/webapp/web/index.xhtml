@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:shiro="http://shiro.apache.org/tags"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<ui:param name="pageTitle" value="Bem vindo ao Espaço Vênus" />
+
+	<ui:define name="header">
+		Sentir-se bem é essencial!
+	</ui:define>
+
+	<ui:define name="main">
+		<div class="row">
+			<div class="span9">
+				<ul class="tumbnails">
+					<h:outputLabel rendered='#{request.isUserInRole("PACIENTE")}' >
+						Paciente (request test)
+					</h:outputLabel>
+					<h:outputLabel rendered='#{request.isUserInRole("ADMINISTRADOR")}' >
+						Administrador (request test)
+					</h:outputLabel>
+					<h:outputLabel rendered='#{request.isUserInRole("NUTRICIONISTA")}' >
+						Nutricionista (request test)
+					</h:outputLabel>
+				</ul>
+
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>

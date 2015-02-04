@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/resources/scaffold/pageTemplate.xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:o="http://omnifaces.org/ui">
+
+	<ui:param name="pageTitle" value="Login" />
+
+	<ui:define name="header">
+		Login
+	</ui:define>
+
+	<ui:define name="main">
+		<div>
+		<h2>Faça seu login social</h2>
+		<h:form>
+			<h:commandLink id="facebook" name="facebook"
+				action="#{socialauthenticator.login}">
+				<img src="#{resource['facebook_icon.png']}"
+					alt="Login usando facebook!" border="0" />
+			</h:commandLink>
+		</h:form>
+		</div>
+		
+		<div class="hero-unit">
+		<h2>ou, se for cadastrado pelo site faça o login abaixo!</h2>
+		<h:form id="login">
+			<h:panelGrid columns="3">
+				<h:outputLabel for="username" value="Usuário(email):" />
+				<h:inputText id="username" required="true" />
+				<h:message for="username" />
+
+				<h:outputLabel for="password" value="Senha:" />
+				<h:inputSecret id="password" required="true" />
+				<h:message for="password" />
+
+				<h:outputLabel for="rememberMe" value="Lembrar" />
+				<h:selectBooleanCheckbox id="rememberMe" />
+				<h:panelGroup />
+
+				<h:panelGroup />
+				<h:commandButton value="Login" class="btn btn-large btn-primary"/>
+				<h:panelGroup styleClass="error"
+					rendered="#{not facesContext.validationFailed}">
+                #{shiroLoginFailure}
+            	</h:panelGroup>
+			</h:panelGrid>
+		</h:form>
+		</div>
+
+		
+	
+		<!-- Registro do usuário se não tem cadastro ou não quer se logar social -->
+		<div>
+			<h2>ou Cadastre-se, é rápido!</h2>
+		<h:form id="register">
+			<h:panelGrid columns="2">
+				<h:outputLabel for="username" value="Usuário(email):" />
+				<h:inputText id="username" value="#{register.user.username}"
+					required="true">
+				</h:inputText>
+				
+				<h:outputLabel for="password" value="Senha:" />
+				<h:inputSecret id="password" value="#{register.user.password}"
+					required="true">
+				</h:inputSecret>
+				
+				<h:outputLabel for="passwordconfirmation" value="Confirmação(Senha):" />
+				<h:inputSecret id="passwordconfirmation" value="#{register.user.passwordConfirmation}"
+					required="true">
+				</h:inputSecret>
+				
+				
+				<h:commandButton value="Cadastre-se" action="#{register.submit}" class="btn btn-large btn-primary">
+				</h:commandButton>
+				
+			</h:panelGrid>
+		</h:form>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

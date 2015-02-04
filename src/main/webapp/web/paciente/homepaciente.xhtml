@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:shiro="http://shiro.apache.org/tags"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/twoColumns.xhtml">
+
+	<ui:param name="pageTitle" value="Home Paciente -  Espaço Vênus" />
+
+	<ui:define name="header">
+		<style type="text/css">
+			.alignTop td {
+    vertical-align: top;
+}
+		</style>
+	</ui:define>
+	<ui:define name="left">
+
+		<img src="/espacoVenus/img/Nos2.jpg" width="95%" alt="Foto!"
+			border="0" />
+
+		<ul class="nav nav-sidebar">
+		    <li class="active"><a href="/espacoVenus/web/paciente/homepaciente.xhtml">Home</a></li>
+			<li><a href="/espacoVenus/web/paciente/recordatario.xhtml">Recordatário</a></li>
+			<li><a href="/espacoVenus/web/paciente/peso.xhtml">Peso</a></li>
+			<li><a href="#">Agenda</a></li>
+			<li><a href="#">Dieta</a></li>
+			<li><a href="#">Composição Corporal</a></li>
+		</ul>
+	</ui:define>
+
+
+
+	<ui:define name="main">
+
+
+
+		<h1 class="page-header">Home</h1>
+
+		
+
+
+
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:shiro="http://shiro.apache.org/tags"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/templates/twoColumns.xhtml">
+
+	<ui:param name="pageTitle" value="Alimentos -  Espaço Vênus" />
+
+	<ui:define name="header">
+		
+	</ui:define>
+	<ui:define name="left">
+
+		<img src="/espacoVenus/img/imgGruposAlimentares.png" width="95%"
+			alt="Foto!" border="0" />
+
+		<ul class="nav nav-sidebar">
+			<li><a href="/espacoVenus/web/alimentos/homeAlimentos.xhtml">Home</a></li>
+			<li><a
+				href="/espacoVenus/web/alimentos/grupoAlimentar.xhtml">Grupo
+					Alimentar</a></li>
+			<li class="active"><a href="/espacoVenus/web/alimentos/alimento.xhtml">Alimentos</a></li>
+			<li><a href="#">Informações Nutricionais</a></li>
+		</ul>
+	</ui:define>
+
+
+
+	<ui:define name="main">
+		
+
+			<h1 class="page-header">Alimentos</h1>
+			<p:spacer />
+			<h:form>
+			<p:fieldset legend="Cadastrar Alimento" toggleable="true"
+				toggleSpeed="500" collapsed="true" id="cadastroAlimento">
+				
+				<h:panelGrid columns="3" cellpadding="5">
+					<h:outputLabel for="selectGrupoAlimento" value="Grupo Alimento: " />
+					<p:selectOneMenu id="selectGrupoAlimento" value="#{alimentoView.alimento.grupoAlimentar}" required="true">
+						<f:selectItem itemLabel="Selecione um Grupo" noSelectionOption="true"/>
+            			<f:selectItems value="#{gruposAlimentaresList}" var="grupoAlimentar" itemLabel="#{grupoAlimentar.nomeGrupo}"/>
+					</p:selectOneMenu>
+					<h:message for="selectGrupoAlimento" />
+					
+					<h:outputLabel value="Nome Alimento: " for="nomeAlimento" />
+					<p:inputText value="#{alimentoView.alimento.nome}" size="45" id="nomeAlimento" required="true"/>
+					<h:message for="nomeAlimento"/>
+					
+				</h:panelGrid>
+				<br/>
+				<p:commandButton value="Salvar Alimento" update="panelAlimentos" 
+					id="commandSalvarAlimentoAjax"
+					actionListener="#{alimentoView.cadastrarAlimento()}"/>
+				
+			</p:fieldset>
+			<p:spacer/>
+			<p:panel id="panelAlimentos">
+				<p:dataTable value="#{AlimentosList}" var = "alimento" paginator="true" rows="15">
+					<p:column headerText="Nome Alimento" width="40%" filterBy="nome" filterMatchMode="contains">#{alimento.nome}</p:column>
+					<p:column headerText="Grupo Alimentar" width="40%">#{alimento.grupoAlimentar.nomeGrupo}</p:column>
+					<p:column headerText="Operações" width="20%">
+						<p:commandButton value="Excluir" titlle="Excluir Alimento"/>
+					</p:column>
+				</p:dataTable>
+				
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
